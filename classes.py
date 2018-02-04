@@ -30,10 +30,10 @@ class weapon(obj):
 		self.atk = atk
 	
 	def attack(self, mob):
-		print "Attacking " + mob.race + " with " + self.name
+#		print "Attacking " + mob.race + " with " + self.name
 		mob.hp -= self.atk
 		self.deg -= 2
-		print mob.race + " hp is " + str(mob.hp)
+#		print mob.race + " hp is " + str(mob.hp)
 
 
 
@@ -88,10 +88,14 @@ class mob(entity):
 		self.atk = atk
 		#self.deaf = deaf
 
+	def attack(self, defender):
+		defender.hp -= self.atk
+
+
 class player(entity):
 	
 	def __init__(self):
-		entity.__init__(self, 'Human', 100)
+		entity.__init__(self, 'Player', 100)
 
 		self.inventory = inventory(10)
 	
@@ -101,16 +105,15 @@ class player(entity):
 	def playerAttack(self, weapon, mob):
 		weapon.attack(mob)
 
-
 #Little demo of a player picking up and attacking a wolf with a sword.
 
-player = player()
-sword = weapon('Sword', 5, degredation = 50)
-player.pickup(sword)
-player.inventory.check()
-wolf = mob('Wolf', 40, 5)
+#player = player()
+#sword = weapon('Sword', 5, degredation = 50)
+#player.pickup(sword)
+#player.inventory.check()
+#wolf = mob('Wolf', 40, 5)
 
-player.playerAttack(sword, wolf)
+#player.playerAttack(sword, wolf)
 
 #sword.attack(wolf)
 #print wolf.hp
